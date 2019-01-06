@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name" translatable="false">dice</string>
+    <string name="p1name" >E w o n</string>
+    <string name="p2name" >I r i s</string>
+    <string name="totalScoreTag">Total points:</string>
+    <string name="NewPointTag">Points earned this turn:</string>
+    <string name="author">made by Nene with love</string>
+    <string name="time">Jan, 2019</string>
+    <string name="button">ROW ME</string>
+    <string name="stop">STOP</string>
+    <string name="currentPoint">Points gained this turn:</string>
+    <string name="p1">player 1</string>
+    <string name="p2">player 2</string>
+</resources>
