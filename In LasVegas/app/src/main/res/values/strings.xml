@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">dice</string>
+    <string name="app_name" translatable="false">In LasVegas</string>
     <string name="p1name" >E w o n</string>
     <string name="p2name" >I r i s</string>
     <string name="totalScoreTag">Total points:</string>
