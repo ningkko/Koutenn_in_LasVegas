@@ -1,4 +1,4 @@
-### New Story
+### A New Story
 
 あの銀河系外も有名な戦い、聞いたことがある？\
 小雨天とイワンという女の子とは運命の熾烈な戦いの末は一体どのようになった、知ってる？\
@@ -7,9 +7,9 @@
 -------------------------------------------------------------------------------------------------------
 ### DEMO:
 
+![alt CAT](https://github.com/ningkko/Koutenn_in_LasVegas/blob/master/demo/demo3.png)
 ![alt CAT](https://github.com/ningkko/Koutenn_in_LasVegas/blob/master/demo/demo1.png)
 ![alt CAT](https://github.com/ningkko/Koutenn_in_LasVegas/blob/master/demo/demo2.png)
-![alt CAT](https://github.com/ningkko/Koutenn_in_LasVegas/blob/master/demo/demo3.png)
 
 -------------------------------------------------------------------------------------------------------
 ### Sound Effects:
