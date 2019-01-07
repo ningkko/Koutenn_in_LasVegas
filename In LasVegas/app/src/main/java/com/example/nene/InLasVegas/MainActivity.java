@@ -1,5 +1,6 @@
 package com.example.nene.InLasVegas;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -89,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 pause();
-                play();
-                bringBackDice();
+                row();
             }
         });
 
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         turn=1;
         currentSong=1;
         isMute=false;
-        pvp=true;
+        pvp=false;
 
         bgMusic=MediaPlayer.create(this, R.raw.bg1);
         bgMusic.setLooping(true);
@@ -286,18 +286,32 @@ public class MainActivity extends AppCompatActivity {
         }
         setDiceInvisible();
 
+        if (pvp||turn==1){
+            restart();
+        }else if ((!pvp)&&turn==2){
+            //pause for a sec
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    row();
+                }
+            }, 500);
+        }
+
     }
 
     public void pause(){
 
-        this.row.setClickable(false);
-        this.stop.setClickable(false);
+        this.row.setEnabled(false);
+        this.stop.setEnabled(false);
+
 
     }
 
     public void restart(){
-        this.row.setClickable(true);
-        this.stop.setClickable(true);
+        this.row.setEnabled(true);
+        this.stop.setEnabled(true);
+
     }
 
     public void indicatePlayer(){
@@ -341,7 +355,6 @@ public class MainActivity extends AppCompatActivity {
                 nextTurn();
             }
         }, 1000);
-        restart();
 
     }
 
@@ -354,31 +367,17 @@ public class MainActivity extends AppCompatActivity {
         this.dice.setVisibility(View.VISIBLE);
     }
 
-    public void play(){
-        if (pvp){
-            row();
-        }
-
-        else{
-            switch (turn){
-
-                case 1:
-                    row();
-                    break;
-
-                case 2:
-                    computerPlay();
-            }
-        }
-    }
 
     public void row(){
+        Log.i(TAG,"row");
 
         this.started=true;
 
         Random rand= new Random();
         int result = rand.nextInt(6)+1;
         pause();
+        Log.i(TAG,Integer.toString(result));
+
         switch (result){
 
             case 1:
@@ -418,24 +417,25 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.i(TAG,"Turn: "+turn);
+
                 setDiceInvisible();
-                restart();
+                if (turn==1||pvp) {
+                    Log.i(TAG,"p1 plays");
+                    restart();
+                }
+
+                if (turn==2&&!pvp){
+                    Log.i(TAG,"computer plays");
+                    row();
+                }
             }
         }, 1000);
+
+        bringBackDice();
+
     }
 
-    public void computerPlay(){
-
-        //pause the raw and stop functions
-        pause();
-
-        // while still pc's turn
-        while(true){
-
-            //row the dice
-            row();
-        }
-    }
 
 }
 
