@@ -15,7 +15,7 @@
 -------------------------------------------------------------------------------------------------------
 
 ### Paper stuff
-[Optimal Play of the Dice Game Pig](https://cupola.gettysburg.edu/cgi/viewcontent.cgi?article=1003&context=csfac)
+Optimal Algorithm: [Optimal Play of the Dice Game Pig](https://cupola.gettysburg.edu/cgi/viewcontent.cgi?article=1003&context=csfac)
 
 ### Sound Effects ✨:
 https://opengameart.org/content/8-bit-music
