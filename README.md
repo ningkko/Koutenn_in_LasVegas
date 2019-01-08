@@ -13,6 +13,10 @@
 ![alt CAT](https://github.com/ningkko/Koutenn_in_LasVegas/blob/master/demo/demo4.png)
 
 -------------------------------------------------------------------------------------------------------
+
+### Paper stuff
+[Optimal Play of the Dice Game Pig](https://cupola.gettysburg.edu/cgi/viewcontent.cgi?article=1003&context=csfac)
+
 ### Sound Effects ✨:
 https://opengameart.org/content/8-bit-music
 https://opengameart.org/content/victory-1
