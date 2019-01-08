@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     final Handler handler= new Handler();
 
     MediaPlayer bgMusic;
-    Button row;
+    Button roll;
     Button stop;
     Button DJ;
     Switch mute;
@@ -437,7 +437,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    public void row(){
+    public void roll(){
 
         this.started=true;
 
