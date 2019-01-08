@@ -1,4 +1,4 @@
-package com.example.demouser.dice;
+package com.example.nene.InLasVegas;
 
 import org.junit.Test;
 

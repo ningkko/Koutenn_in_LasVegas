@@ -1,6 +1,4 @@
 package com.example.nene.InLasVegas;
-
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -40,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private int currentSong;
     private int currentAvatar1;
     private int currentAvatar2;
+    private int intelligentLevel;
+    private int winScore;
 
 
     final Handler handler= new Handler();
@@ -58,10 +58,13 @@ public class MainActivity extends AppCompatActivity {
     GifImageView p2;
     TextView p1NameTag;
     TextView p2NameTag;
+    TextView pointTag;
+
     private boolean isMute;
     private boolean started;
     private boolean pvp;
 
+    Random rand;
 
 
     @Override
@@ -88,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                pointTag.setText("Your Point");
+                currentPoint.setVisibility(View.VISIBLE);
                 pause();
                 row();
             }
@@ -103,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void setMute(){
 
         if (!isMute) {
@@ -117,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeBackground(){
 
-        Random rand= new Random();
         int newBG=rand.nextInt(11);
         switch (newBG){
             case 1:
@@ -209,25 +211,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void checkWin(){
 
-        if (p1TotalScore>=100){
+        if (p1TotalScore>=winScore){
             row.setClickable(false);
             stop.setClickable(false);
-            TextView pointTag=findViewById(R.id.currentpointTag);
             pointTag.setText("Ewon wins!!");
             currentPoint.setText("Total score: "+p1TotalScore);
         }
-        else if(p2TotalScore>=100){
+        else if(p2TotalScore>=winScore){
             row.setClickable(false);
             stop.setClickable(false);
             TextView pointTag=findViewById(R.id.currentpointTag);
-            pointTag.setText("Iris wins!!");
+            if (pvp){
+                pointTag.setText("Iris wins!!");
+            }else{
+                pointTag.setText("Super Intelligence outcomes humans! Doomed!");
+            }
 
             currentPoint.setText("Total score: "+p2TotalScore);
 
         }
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                reset();
+            }
+        }, 2000);
 
     }
 
@@ -235,8 +246,11 @@ public class MainActivity extends AppCompatActivity {
         p1TotalScore=0;
         p2TotalScore=0;
         turnScore=0;
-        turn=1;
+        rand=new Random();
+        turn=rand.nextInt(1)+1;
         currentSong=1;
+        winScore=20;
+        started=false;
         isMute=false;
         pvp=false;
 
@@ -256,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
         dice=(ImageView) findViewById(R.id.dice);
         p1NameTag=(TextView) findViewById(R.id.p1NameTag);
         p2NameTag=(TextView) findViewById(R.id.p2nameTag);
-
+        pointTag=(TextView) findViewById(R.id.currentpointTag);
         bg.setImageResource(R.drawable.g1);
         p1.setImageResource(R.drawable.a1);
         p2.setImageResource(R.drawable.a2);
@@ -264,6 +278,13 @@ public class MainActivity extends AppCompatActivity {
         currentPoint.setText(Integer.toString(turnScore));
         p1Total.setProgress(p1TotalScore);
         p2Total.setProgress(p2TotalScore);
+
+        if (!pvp){
+            p2NameTag.setText("Super Intelligence");
+        }
+
+        pointTag.setText("Start from "+ getCurrentPlayerName() );
+        currentPoint.setVisibility(View.INVISIBLE);
 
         indicatePlayer();
     }
@@ -280,7 +301,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         indicatePlayer();
-        Random rand=new Random();
         if(rand.nextInt(5)==0) {
             changeBackground();
         }
@@ -367,16 +387,7 @@ public class MainActivity extends AppCompatActivity {
         this.dice.setVisibility(View.VISIBLE);
     }
 
-
-    public void row(){
-        Log.i(TAG,"row");
-
-        this.started=true;
-
-        Random rand= new Random();
-        int result = rand.nextInt(6)+1;
-        pause();
-        Log.i(TAG,Integer.toString(result));
+    public void changeDice(int result){
 
         switch (result){
 
@@ -410,32 +421,87 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+    }
+
+    public void computerThinksForAWhile(int result){
+        if (intelligentLevel==1){
+
+        }
+        if (intelligentLevel==2&&turnScore>=20) {
+            setNewTurn();
+        }
+        if (intelligentLevel==3){
+            if (rand.nextInt(3)==0){
+                setNewTurn();
+            }
+        }
+
+    }
+    public void row(){
+
+        this.started=true;
+
+        int result = rand.nextInt(6)+1;
+        pause();
+        Log.i(TAG,Integer.toString(result));
+
+        changeDice(result);
 
         this.turnScore += result;
         this.currentPoint.setText(Integer.toString(turnScore));
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(TAG,"Turn: "+turn);
+        if (turn==2&&!pvp){
 
-                setDiceInvisible();
-                if (turn==1||pvp) {
-                    Log.i(TAG,"p1 plays");
-                    restart();
+            computerThinksForAWhile(result);
+
+        }else {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    setDiceInvisible();
+                    if (turn == 1 || pvp) {
+                        restart();
+                        bringBackDice();
+
+                    }
+
+                    if (turn == 2 && !pvp) {
+                        row();
+                        bringBackDice();
+                    }
                 }
-
-                if (turn==2&&!pvp){
-                    Log.i(TAG,"computer plays");
-                    row();
-                }
-            }
-        }, 1000);
-
-        bringBackDice();
-
+            }, 1000);
+        }
     }
 
+
+    public String getCurrentPlayerName(){
+
+        if (turn==1){
+            return p1NameTag.getText().toString();
+        }else{
+            return p2NameTag.getText().toString();
+        }
+    }
+
+    public void reset(){
+
+        p1TotalScore=0;
+        p2TotalScore=0;
+        turnScore=0;
+        currentPoint.setText("0");
+        p1Total.setProgress(0);
+        p2Total.setProgress(0);
+        started=false;
+        restart();
+
+        turn=rand.nextInt(1)+1;
+        pointTag.setText("Start from P"+turn );
+        currentPoint.setVisibility(View.INVISIBLE);
+
+
+    }
 
 }
 

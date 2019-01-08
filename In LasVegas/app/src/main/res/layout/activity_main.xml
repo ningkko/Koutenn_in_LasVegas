@@ -114,7 +114,7 @@
 
     <TextView
         android:id="@+id/p2nameTag"
-        android:layout_width="155dp"
+        android:layout_width="154dp"
         android:layout_height="23dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -236,16 +236,16 @@
 
     <TextView
         android:id="@+id/currentpointTag"
-        android:layout_width="100dp"
-        android:layout_height="24dp"
+        android:layout_width="263dp"
+        android:layout_height="29dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Your Point"
-        android:textStyle="bold"
-        android:textColor="#FF0fbc9c"
         android:textAlignment="center"
+        android:textColor="#FF0fbc9c"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/currentpoint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
