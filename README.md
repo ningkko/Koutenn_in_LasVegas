@@ -1,12 +1,12 @@
 ### A New Story 🎲
 
-あの銀河系外も有名な戦い、聞いたことがある？\
-小雨天とイワンという女の子との熾烈な運命の戦いの末は一体どのようになった、知ってる？\
+あの銀河系外でも有名な戦い、聞いたことがある？\
+小雨天とイワンという女の子との熾烈な運命の戦いの末は一体どのようになったこと、知ってるかい？\
 これは、彼女がまだあの伝説中の百万ドルの夜景に一攫千金といった映画のような世界、アメリカのラスベガスにいる時代の物語である。
 
-Have you ever heard of the battle which is famous even if outside of the galaxy?\
-Do you know what the result of the fierce destined battle Koutenn had with the girl called Ewon actually was?\
-This is a story happened in the era when Koutenn was still in the movie-like world where was said that in extravagant night views one makes fortune at one single stroke - America's legendary Las Vegas.
+Have you ever heard of the battle which is famous even outside of the galaxy?\
+Do you know how the destined fierce battle Koutenn had with the girl named Ewon eventually turned to be?\
+This is a story that happened in the era when Koutenn was still in the movie-like world - the legendary Las Vegas of the states. And in those extravagant night views, billionaires were made at single strokes.
 
 -------------------------------------------------------------------------------------------------------
 ### DEMO 🌃:
